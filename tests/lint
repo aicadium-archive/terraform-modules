@@ -1,0 +1,11 @@
+#!/bin/sh
+set -xeuo pipefail
+
+main() {
+    cd "$@"
+    terraform init -backend=false
+    terraform validate
+    tflint
+}
+
+main "$@"
