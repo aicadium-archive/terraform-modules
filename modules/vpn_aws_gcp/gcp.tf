@@ -8,22 +8,22 @@ resource "google_compute_external_vpn_gateway" "from_aws" {
   description     = "External VPN gateways to AWS cluster"
 
   interface {
-    id = 0
+    id         = 0
     ip_address = aws_vpn_connection.a.tunnel1_address
   }
 
   interface {
-    id = 1
+    id         = 1
     ip_address = aws_vpn_connection.a.tunnel2_address
   }
 
   interface {
-    id = 2
+    id         = 2
     ip_address = aws_vpn_connection.b.tunnel1_address
   }
 
   interface {
-    id = 3
+    id         = 3
     ip_address = aws_vpn_connection.b.tunnel2_address
   }
 }
@@ -144,7 +144,7 @@ resource "google_compute_router_interface" "tunnel1" {
 
   router = google_compute_router.a.name
 
-  ip_range = "${aws_vpn_connection.a.tunnel1_cgw_inside_address}/${var.vpn_tunnel_cidr}"
+  ip_range   = "${aws_vpn_connection.a.tunnel1_cgw_inside_address}/${var.vpn_tunnel_cidr}"
   vpn_tunnel = google_compute_vpn_tunnel.tunnel1.name
 }
 
@@ -168,7 +168,7 @@ resource "google_compute_router_interface" "tunnel2" {
 
   router = google_compute_router.a.name
 
-  ip_range = "${aws_vpn_connection.a.tunnel2_cgw_inside_address}/${var.vpn_tunnel_cidr}"
+  ip_range   = "${aws_vpn_connection.a.tunnel2_cgw_inside_address}/${var.vpn_tunnel_cidr}"
   vpn_tunnel = google_compute_vpn_tunnel.tunnel2.name
 }
 
@@ -192,7 +192,7 @@ resource "google_compute_router_interface" "tunnel3" {
 
   router = google_compute_router.a.name
 
-  ip_range = "${aws_vpn_connection.b.tunnel1_cgw_inside_address}/${var.vpn_tunnel_cidr}"
+  ip_range   = "${aws_vpn_connection.b.tunnel1_cgw_inside_address}/${var.vpn_tunnel_cidr}"
   vpn_tunnel = google_compute_vpn_tunnel.tunnel3.name
 }
 
@@ -216,7 +216,7 @@ resource "google_compute_router_interface" "tunnel4" {
 
   router = google_compute_router.a.name
 
-  ip_range = "${aws_vpn_connection.b.tunnel2_cgw_inside_address}/${var.vpn_tunnel_cidr}"
+  ip_range   = "${aws_vpn_connection.b.tunnel2_cgw_inside_address}/${var.vpn_tunnel_cidr}"
   vpn_tunnel = google_compute_vpn_tunnel.tunnel4.name
 }
 
