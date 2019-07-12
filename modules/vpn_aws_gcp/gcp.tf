@@ -5,7 +5,7 @@ resource "google_compute_external_vpn_gateway" "from_aws" {
   name    = "ext-gateway-${var.gcp_network_resource_name}-to-${var.aws_network_resource_name}"
 
   redundancy_type = "FOUR_IPS_REDUNDANCY"
-  description     = "External VPN gateways to AWS cluster"
+  description     = var.gcp_external_vpn_gateway_desc
 
   interface {
     id         = 0

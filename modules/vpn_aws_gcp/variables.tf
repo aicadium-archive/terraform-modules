@@ -7,9 +7,9 @@ variable "gcp_project_id" {
   description = "Name of the GCP project which contains the GCP network"
 }
 
-variable "aws_region" {
-  description = "Default region for AWS"
-  default     = "ap-southeast-1"
+variable "gcp_external_vpn_gateway_desc" {
+  description = "Description of external VPN gateway"
+  default     = "External VPN gateways to AWS cluster"
 }
 
 variable "aws_network_resource_name" {
