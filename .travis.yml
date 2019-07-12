@@ -13,7 +13,7 @@ install:
   - docker build -t ${LINT_IMAGE} -f tests/Dockerfile .
 
 script:
-  - docker run --rm -ti --entrypoint terraform ${LINT_IMAGE} fmt -check=true -diff ./
+  - docker run --rm -ti --entrypoint terraform ${LINT_IMAGE} fmt -check=true -recursive -diff ./
   - |
     find . \
       -not -path '*/\.*' \
