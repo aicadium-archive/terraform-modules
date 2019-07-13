@@ -1,4 +1,6 @@
 resource "aws_vpn_gateway" "a" {
+  count = var.use_existing_aws_vgw ? 0 : 1
+
   # A VPC can only have one VPN gateway attached
   vpc_id          = var.aws_vpc_id
   amazon_side_asn = var.aws_bgp_asn
@@ -7,7 +9,7 @@ resource "aws_vpn_gateway" "a" {
 resource "aws_vpn_gateway_route_propagation" "a" {
   count = length(data.aws_route_tables.tables.ids)
 
-  vpn_gateway_id = aws_vpn_gateway.a.id
+  vpn_gateway_id = var.use_existing_aws_vgw ? data.aws_vpn_gateway.existing[0].id : aws_vpn_gateway.a[0].id
   route_table_id = element(tolist(data.aws_route_tables.tables.ids), count.index)
 }
 
@@ -21,7 +23,7 @@ resource "aws_customer_gateway" "a" {
 }
 
 resource "aws_vpn_connection" "a" {
-  vpn_gateway_id      = aws_vpn_gateway.a.id
+  vpn_gateway_id      = var.use_existing_aws_vgw ? data.aws_vpn_gateway.existing[0].id : aws_vpn_gateway.a[0].id
   customer_gateway_id = aws_customer_gateway.a.id
   type                = "ipsec.1"
   static_routes_only  = false
@@ -37,7 +39,7 @@ resource "aws_customer_gateway" "b" {
 }
 
 resource "aws_vpn_connection" "b" {
-  vpn_gateway_id      = aws_vpn_gateway.a.id
+  vpn_gateway_id      = var.use_existing_aws_vgw ? data.aws_vpn_gateway.existing[0].id : aws_vpn_gateway.a[0].id
   customer_gateway_id = aws_customer_gateway.b.id
   type                = "ipsec.1"
   static_routes_only  = false

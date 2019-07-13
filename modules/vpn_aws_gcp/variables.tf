@@ -44,3 +44,8 @@ variable "aws_bgp_asn" {
 variable "aws_vpc_id" {
   description = "AWS VPC ID"
 }
+
+variable "use_existing_aws_vgw" {
+  description = "Use an existing VPN Gateway (VGW) that is already attached to your AWS VPC"
+  default     = false
+}

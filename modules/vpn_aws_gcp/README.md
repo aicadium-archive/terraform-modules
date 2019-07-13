@@ -11,6 +11,10 @@ This Terraform module establishes a highly-available site-to-site VPN connection
 - `aws_bgp_asn` - BGP ASN of the AWS network. This ASN should not clash with the GCP BGP ASN.
 - `aws_vpc_id` - AWS VPC ID
 
+### Using an existing AWS VPN gateway
+
+If you already have an existing VPN gateway attached to your AWS VPC, you can use it by specifying `use_existing_aws_vgw` as `true`.
+
 ### Connectivity diagram
 
 ```
@@ -82,3 +86,4 @@ GCP documentation on HA VPN connectivity:
 AWS documentation on redundant VPN connectivity
 - https://docs.aws.amazon.com/vpn/latest/s2svpn/VPNConnections.html
 - https://aws.amazon.com/answers/networking/aws-multiple-data-center-ha-network-connectivity/
+- https://docs.aws.amazon.com/vpc/latest/adminguide/Introduction.html#MultipleVPNConnections
