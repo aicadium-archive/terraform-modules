@@ -10,7 +10,6 @@ This Terraform module establishes a highly-available site-to-site VPN connection
 - `gcp_bgp_asn` - BGP ASN of the GCP network. This ASN should not clash with the AWS BGP ASN.
 - `aws_bgp_asn` - BGP ASN of the AWS network. This ASN should not clash with the GCP BGP ASN.
 - `aws_vpc_id` - AWS VPC ID
-- `aws_route_table_ids` - AWS route table IDs to propagate VPN routes
 
 ### Connectivity diagram
 

@@ -5,10 +5,10 @@ resource "aws_vpn_gateway" "a" {
 }
 
 resource "aws_vpn_gateway_route_propagation" "a" {
-  count = length(var.aws_route_table_ids)
+  count = length(data.aws_route_tables.tables.ids)
 
   vpn_gateway_id = aws_vpn_gateway.a.id
-  route_table_id = element(var.aws_route_table_ids, count.index)
+  route_table_id = element(tolist(data.aws_route_tables.tables.ids), count.index)
 }
 
 

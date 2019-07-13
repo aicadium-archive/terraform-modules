@@ -44,8 +44,3 @@ variable "aws_bgp_asn" {
 variable "aws_vpc_id" {
   description = "AWS VPC ID"
 }
-
-variable "aws_route_table_ids" {
-  description = "AWS route table IDs to propagate VPN routes"
-  type        = list(string)
-}
